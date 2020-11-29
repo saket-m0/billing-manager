@@ -23,7 +23,7 @@ const AddBill = React.memo((props) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const bill = {
-			id: props.bills.length + 1,
+			id: props.bills[props.bills.length - 1].id + 1,
 			description: event.target.description.value,
 			amount: Number(event.target.amount.value),
 			category: category,

@@ -112,48 +112,6 @@ const ShowBills = React.memo((props) => {
 									</StyledTableCell>
 								</TableRow>
 							))}
-						<TableRow
-							style={{
-								backgroundColor: '#eeeeee',
-							}}>
-							<StyledTableCell component='th' scope='row'>
-								McDonalds
-							</StyledTableCell>
-							<StyledTableCell align='right'>200</StyledTableCell>
-							<StyledTableCell align='right'>
-								Food & Dining
-							</StyledTableCell>
-							<StyledTableCell align='right'>
-								18 Nov 2020
-							</StyledTableCell>
-							<StyledTableCell align='center'>
-								<EditBill bill={props.bills[0]} />
-							</StyledTableCell>
-							<StyledTableCell>
-								<RemoveBill bill={props.bills[0]} />
-							</StyledTableCell>
-						</TableRow>
-						<TableRow
-							style={{
-								backgroundColor: '#eeeeee',
-							}}>
-							<StyledTableCell component='th' scope='row'>
-								Movie
-							</StyledTableCell>
-							<StyledTableCell align='right'>500</StyledTableCell>
-							<StyledTableCell align='right'>
-								Other
-							</StyledTableCell>
-							<StyledTableCell align='right'>
-								06 Nov 2020
-							</StyledTableCell>
-							<StyledTableCell align='center'>
-								<EditBill bill={props.bills[0]} />
-							</StyledTableCell>
-							<StyledTableCell>
-								<RemoveBill bill={props.bills[0]} />
-							</StyledTableCell>
-						</TableRow>
 					</TableBody>
 					<TableFooter>
 						<StyledTableCell>Total</StyledTableCell>
