@@ -9,6 +9,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TableFooter from '@material-ui/core/TableFooter';
 import Paper from '@material-ui/core/Paper';
 import moment from 'moment';
 
@@ -23,6 +24,12 @@ const ShowBills = React.memo((props) => {
 		},
 		body: {
 			fontSize: 14,
+		},
+		footer: {
+			fontSize: 14,
+			color: theme.palette.common.black,
+			backgroundColor: theme.palette.warning.light,
+			fontWeight: 'bold',
 		},
 	}))(TableCell);
 
@@ -55,10 +62,10 @@ const ShowBills = React.memo((props) => {
 								Date
 							</StyledTableCell>
 							<StyledTableCell
+								colSpan={2}
 								align='right'
-								style={{ width: '9%' }}
+								style={{ width: '14%' }}
 							/>
-							<StyledTableCell style={{ width: '5%' }} />
 						</TableRow>
 					</TableHead>
 					<TableBody>
@@ -105,7 +112,63 @@ const ShowBills = React.memo((props) => {
 									</StyledTableCell>
 								</TableRow>
 							))}
+						<TableRow
+							style={{
+								backgroundColor: '#eeeeee',
+							}}>
+							<StyledTableCell component='th' scope='row'>
+								McDonalds
+							</StyledTableCell>
+							<StyledTableCell align='right'>200</StyledTableCell>
+							<StyledTableCell align='right'>
+								Food & Dining
+							</StyledTableCell>
+							<StyledTableCell align='right'>
+								18 Nov 2020
+							</StyledTableCell>
+							<StyledTableCell align='center'>
+								<EditBill bill={props.bills[0]} />
+							</StyledTableCell>
+							<StyledTableCell>
+								<RemoveBill bill={props.bills[0]} />
+							</StyledTableCell>
+						</TableRow>
+						<TableRow
+							style={{
+								backgroundColor: '#eeeeee',
+							}}>
+							<StyledTableCell component='th' scope='row'>
+								Movie
+							</StyledTableCell>
+							<StyledTableCell align='right'>500</StyledTableCell>
+							<StyledTableCell align='right'>
+								Other
+							</StyledTableCell>
+							<StyledTableCell align='right'>
+								06 Nov 2020
+							</StyledTableCell>
+							<StyledTableCell align='center'>
+								<EditBill bill={props.bills[0]} />
+							</StyledTableCell>
+							<StyledTableCell>
+								<RemoveBill bill={props.bills[0]} />
+							</StyledTableCell>
+						</TableRow>
 					</TableBody>
+					<TableFooter>
+						<StyledTableCell>Total</StyledTableCell>
+						<StyledTableCell align='right'>
+							{props.bills.reduce((a, b) => {
+								return a + b['amount'];
+							}, 0)}
+						</StyledTableCell>
+						<StyledTableCell colSpan={2} align='right'>
+							Minimum Number of Bills: {props.payBills.length}
+						</StyledTableCell>
+						<StyledTableCell
+							colSpan={2}
+							align='center'></StyledTableCell>
+					</TableFooter>
 				</Table>
 			</TableContainer>
 		</div>
@@ -119,6 +182,5 @@ const mapStateToProps = (state) => {
 		filteredCategories: state.filteredCategories,
 	};
 };
-
 
 export default connect(mapStateToProps)(ShowBills);

@@ -50,7 +50,7 @@ const EditBill = React.memo((props) => {
 		event.preventDefault();
 		const newBill = {
 			description: event.target.description.value,
-			amount: event.target.amount.value,
+			amount: Number(event.target.amount.value),
 			category: category,
 			date: event.target.date.value,
 		};

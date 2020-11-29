@@ -20,13 +20,12 @@ const AddBill = React.memo((props) => {
 	const [category, setCategory] = React.useState('');
 	const [date, setDate] = React.useState(new Date());
 
-	
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const bill = {
 			id: props.bills.length + 1,
 			description: event.target.description.value,
-			amount: event.target.amount.value,
+			amount: Number(event.target.amount.value),
 			category: category,
 			date: event.target.date.value,
 		};
