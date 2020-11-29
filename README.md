@@ -9,7 +9,7 @@ The Bill Manager shows a bill dashboard. The dashboard shows
 The user can see the minimum bills that should be paid (n), such that their total value does not exceed the monthly budget value while meeting the condition that no more bills can be added from the remaining bills.
 
 ### Screens
-
+![Screens](https://user-images.githubusercontent.com/51404065/100554338-038fe580-32ba-11eb-85a7-fe72c9f39299.png)
 
 ## Development
 The app was built in React with Redux. Materials UI was used for Front End Components.
