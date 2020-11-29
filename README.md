@@ -10,6 +10,7 @@ The user can see the minimum bills that should be paid (n), such that their tota
 
 ### Screens
 
+
 ## Development
 The app was built in React with Redux. Materials UI was used for Front End Components.
 
