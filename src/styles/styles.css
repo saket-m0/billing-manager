@@ -29,6 +29,44 @@ code {
 	margin-top: 10px;
 }
 
+#budget-form-button {
+	width: 30%;
+	padding: 5px;
+	font-size: 1rem;
+	margin: 10px 0;
+}
+
 .modal:focus {
 	outline: none;
+}
+
+#filter-select {
+	min-width: 160px;
+	max-width: 350px;
+}
+
+@media screen and (max-width: 1176px) {
+	#form-button,
+	#budget-form-button {
+		font-size: 0.75rem;
+	}
+
+	#filter-select {
+		max-width: 275px;
+	}
+}
+
+@media screen and (max-width: 1016px) {
+	.bills-list {
+		flex-direction: column;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	#filter-categories-container {
+		flex-direction: column;
+	}
+	#filter-category-select {
+		align-self: flex-end;
+	}
 }

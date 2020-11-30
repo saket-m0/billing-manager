@@ -33,15 +33,10 @@ const BudgetForm = React.memo((props) => {
 					style={{ width: '60%' }}
 				/>
 				<Button
+					id='budget-form-button'
 					variant='contained'
 					color='secondary'
-					type='submit'
-					style={{
-						width: '30%',
-						padding: '5px',
-						fontSize: '1rem',
-						margin: '10px 0',
-					}}>
+					type='submit'>
 					Pay Bills
 				</Button>
 			</div>

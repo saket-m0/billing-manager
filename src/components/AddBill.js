@@ -123,14 +123,6 @@ const AddBill = React.memo((props) => {
 										{category.category}
 									</MenuItem>
 								))}
-								{/* <TextField
-									label='Add Category'
-									color='secondary'
-									type='text'
-									name='newCategory'
-									style={{ margin: '4px 16px' }}
-									onSubmit={handleAddCategory}
-								/> */}
 							</Select>
 						</FormControl>
 						<TextField

@@ -12,6 +12,8 @@ import { bindActionCreators } from 'redux';
 
 import { filterCategories } from '../actions/FilterCategoriesActionCreators';
 
+require('../styles/styles.css');
+
 const FilterCategories = React.memo((props) => {
 	const [category, setCategory] = React.useState([]);
 
@@ -26,8 +28,15 @@ const FilterCategories = React.memo((props) => {
 	};
 
 	return (
-		<div style={{ width: '95%', margin: 'auto', display: 'flex' }}>
+		<div
+			className='bills-list'
+			style={{
+				width: '95%',
+				margin: 'auto',
+				display: 'flex',
+			}}>
 			<div
+				id='filter-categories-container'
 				style={{
 					margin: '40px 10px 10px 10px',
 					flex: 2,
@@ -41,15 +50,12 @@ const FilterCategories = React.memo((props) => {
 					</h1>
 				</div>
 				<div
+					id='filter-category-select'
 					style={{
 						display: 'flex',
 						alignItems: 'baseline',
 					}}>
-					<FormControl
-						style={{
-							minWidth: 160,
-							maxWidth: 350,
-						}}>
+					<FormControl id='filter-select'>
 						<InputLabel
 							id='demo-mutiple-chip-label'
 							color='secondary'>
