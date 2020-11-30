@@ -48,6 +48,7 @@ const FilterCategories = React.memo((props) => {
 					<FormControl
 						style={{
 							minWidth: 160,
+							maxWidth: 350,
 						}}>
 						<InputLabel
 							id='demo-mutiple-chip-label'
@@ -63,13 +64,20 @@ const FilterCategories = React.memo((props) => {
 							onChange={handleChange}
 							input={<Input id='select-multiple-chip' />}
 							renderValue={(selected) => (
-								<div style={{ margin: 2 }}>
+								<div
+									style={{
+										margin: 2,
+										display: 'flex',
+										flexWrap: 'wrap',
+									}}>
 									{selected.map((value) => (
 										<Chip
 											key={value}
 											name={value}
 											label={value}
-											style={{ margin: 2 }}
+											style={{
+												margin: 2,
+											}}
 										/>
 									))}
 								</div>

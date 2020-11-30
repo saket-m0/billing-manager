@@ -1,5 +1,10 @@
 import Categories from '../Data/Categories';
 
 export const CategoriesReducer = (state = Categories, action) => {
-	return state;
+	switch (action.type) {
+		case 'CATEGORY_ADDED':
+			return [...state, action.category];
+		default:
+			return state;
+	}
 };

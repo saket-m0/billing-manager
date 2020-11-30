@@ -5,14 +5,12 @@ export const PayBillsReducer = (state = [], action) => {
 			action.bills.sort((a, b) => {
 				return b.amount - a.amount;
 			});
-			console.log(action.bills);
 			action.bills.forEach((bill) => {
 				if (bill.amount <= action.budget) {
 					action.budget = action.budget - bill.amount;
 					state.push(bill);
 				}
 			});
-			console.log(state);
 			return state;
 		default:
 			return state;

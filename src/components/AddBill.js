@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addBill } from '../actions/FormActionCreators';
 import { changeChartVisibility } from '../actions/ShowChartActionCreators';
+import { addCategory } from '../actions/CategoriesActionCreators';
 import BudgetForm from './BudgetForm';
 import moment from 'moment';
 
@@ -29,8 +30,6 @@ const AddBill = React.memo((props) => {
 			category: category,
 			date: event.target.date.value,
 		};
-		console.log(event.target.date.value);
-		console.log(new Date());
 		props.addBill(bill);
 
 		event.target.description.InputLabelProps = {
@@ -47,6 +46,16 @@ const AddBill = React.memo((props) => {
 		event.preventDefault();
 		props.changeChartVisibility();
 	};
+
+	// const handleAddCategory = (event) => {
+	// 	event.preventDefault();
+	// 	const newCategory = {
+	// 		id: props.categories[props.categories.length - 1].id + 1,
+	// 		category: event.target.newCategory.value,
+	// 	};
+	// 	console.log(newCategory);
+	// 	console.log(props.categories);
+	// };
 
 	return (
 		<div
@@ -114,6 +123,14 @@ const AddBill = React.memo((props) => {
 										{category.category}
 									</MenuItem>
 								))}
+								{/* <TextField
+									label='Add Category'
+									color='secondary'
+									type='text'
+									name='newCategory'
+									style={{ margin: '4px 16px' }}
+									onSubmit={handleAddCategory}
+								/> */}
 							</Select>
 						</FormControl>
 						<TextField
@@ -166,8 +183,11 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const matchDispatchToProps = (dispatch) => {
-	return bindActionCreators({ addBill, changeChartVisibility }, dispatch);
+const mapDispatchToProps = (dispatch) => {
+	return bindActionCreators(
+		{ addBill, changeChartVisibility, addCategory },
+		dispatch
+	);
 };
 
-export default connect(mapStateToProps, matchDispatchToProps)(AddBill);
+export default connect(mapStateToProps, mapDispatchToProps)(AddBill);
