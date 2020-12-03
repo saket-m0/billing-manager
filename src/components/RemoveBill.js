@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { removeBill } from '../actions/FormActionCreators';
 
 import Button from '@material-ui/core/Button';
@@ -74,8 +73,8 @@ const RemoveBill = React.memo((props) => {
 	);
 });
 
-const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ removeBill }, dispatch);
+const mapDispatchToProps = {
+	removeBill,
 };
 
 export default connect(null, mapDispatchToProps)(RemoveBill);

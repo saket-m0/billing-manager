@@ -13,13 +13,21 @@ import TableFooter from '@material-ui/core/TableFooter';
 import Paper from '@material-ui/core/Paper';
 import moment from 'moment';
 
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+
 import EditBill from './EditBill';
 import RemoveBill from './RemoveBill';
 
 const ShowBills = React.memo((props) => {
+	const [sortBy, setSortBy] = React.useState({
+		property: 'id',
+		sortOrder: 1,
+	});
+
 	const StyledTableCell = withStyles((theme) => ({
 		head: {
-			backgroundColor: theme.palette.common.black,
+			backgroundColor: 'rgba(0, 0, 0, 0.8)',
 			color: theme.palette.common.white,
 		},
 		body: {
@@ -33,6 +41,22 @@ const ShowBills = React.memo((props) => {
 		},
 	}))(TableCell);
 
+	const handleSort = (sortByProperty) => {
+		if (sortBy.property === sortByProperty) {
+			console.log('Heree');
+			setSortBy({
+				property: sortByProperty,
+				sortOrder: sortBy.sortOrder * -1,
+			});
+		} else {
+			console.log('Heree 2');
+			setSortBy({
+				property: sortByProperty,
+				sortOrder: 1,
+			});
+		}
+	};
+
 	return (
 		<div
 			className='table-container'
@@ -43,25 +67,71 @@ const ShowBills = React.memo((props) => {
 				<Table stickyHeader className='table' style={{ minWidth: 700 }}>
 					<TableHead>
 						<TableRow>
-							<StyledTableCell style={{ width: '20%' }}>
+							<StyledTableCell
+								className='table-head'
+								style={{ width: '20%', position: 'relative' }}
+								onClick={() => handleSort('description')}>
 								Description
+								{sortBy.property === 'description' ? (
+									sortBy.sortOrder === 1 ? (
+										<ArrowUpwardIcon />
+									) : (
+										<ArrowDownwardIcon />
+									)
+								) : (
+									<></>
+								)}
 							</StyledTableCell>
 							<StyledTableCell
+								className='table-head'
 								align='right'
-								style={{ width: '22%' }}>
+								style={{ width: '22%' }}
+								onClick={() => handleSort('amount')}>
 								Amount
+								{sortBy.property === 'amount' ? (
+									sortBy.sortOrder === 1 ? (
+										<ArrowUpwardIcon />
+									) : (
+										<ArrowDownwardIcon />
+									)
+								) : (
+									<></>
+								)}
 							</StyledTableCell>
 							<StyledTableCell
+								className='table-head'
 								align='right'
-								style={{ width: '22%' }}>
+								style={{ width: '22%' }}
+								onClick={() => handleSort('category')}>
 								Category
+								{sortBy.property === 'category' ? (
+									sortBy.sortOrder === 1 ? (
+										<ArrowUpwardIcon />
+									) : (
+										<ArrowDownwardIcon />
+									)
+								) : (
+									<></>
+								)}
 							</StyledTableCell>
 							<StyledTableCell
+								className='table-head'
 								align='right'
-								style={{ width: '22%' }}>
+								style={{ width: '22%' }}
+								onClick={() => handleSort('date')}>
 								Date
+								{sortBy.property === 'date' ? (
+									sortBy.sortOrder === 1 ? (
+										<ArrowUpwardIcon />
+									) : (
+										<ArrowDownwardIcon />
+									)
+								) : (
+									<></>
+								)}
 							</StyledTableCell>
 							<StyledTableCell
+								className='table-head'
 								colSpan={2}
 								align='right'
 								style={{ width: '14%' }}
@@ -71,7 +141,11 @@ const ShowBills = React.memo((props) => {
 					<TableBody>
 						{props.bills
 							.sort((a, b) => {
-								return a.id - b.id;
+								var prev = a[sortBy.property],
+									next = b[sortBy.property];
+								if (prev < next) return -1 * sortBy.sortOrder;
+								if (prev > next) return 1 * sortBy.sortOrder;
+								return 0;
 							})
 							.filter((bill) =>
 								props.filteredCategories.length !== 0
@@ -133,12 +207,10 @@ const ShowBills = React.memo((props) => {
 	);
 });
 
-const mapStateToProps = (state) => {
-	return {
-		bills: state.bills,
-		payBills: state.payBills,
-		filteredCategories: state.filteredCategories,
-	};
-};
+const mapStateToProps = (state) => ({
+	bills: state.bills,
+	payBills: state.payBills,
+	filteredCategories: state.filteredCategories,
+});
 
 export default connect(mapStateToProps)(ShowBills);

@@ -71,8 +71,8 @@ const TimeSeriesPlot = React.memo((props) => {
 	);
 });
 
-const mapStateToProps = (state) => {
-	return { bills: state.bills };
-};
+const mapStateToProps = (state) => ({
+	bills: state.bills,
+});
 
 export default connect(mapStateToProps)(TimeSeriesPlot);

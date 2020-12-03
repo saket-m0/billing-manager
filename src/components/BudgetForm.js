@@ -2,8 +2,7 @@ import React from 'react';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { bindActionCreators } from 'redux';
-import { PayBills } from '../actions/PayBillsActionCreators';
+import { payBills } from '../actions/PayBillsActionCreators';
 import { connect } from 'react-redux';
 
 require('../styles/styles.css');
@@ -11,7 +10,7 @@ require('../styles/styles.css');
 const BudgetForm = React.memo((props) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		props.PayBills(event.target.budget.value, props.bills);
+		props.payBills(event.target.budget.value, props.bills);
 	};
 	return (
 		<form
@@ -44,12 +43,12 @@ const BudgetForm = React.memo((props) => {
 	);
 });
 
-const mapStateToProps = (state) => {
-	return { bills: state.bills };
-};
+const mapStateToProps = (state) => ({
+	bills: state.bills,
+});
 
-const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ PayBills }, dispatch);
+const mapDispatchToProps = {
+	payBills,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BudgetForm);

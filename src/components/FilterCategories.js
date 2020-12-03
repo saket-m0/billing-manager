@@ -8,7 +8,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
-import { bindActionCreators } from 'redux';
 
 import { filterCategories } from '../actions/FilterCategoriesActionCreators';
 
@@ -133,14 +132,12 @@ const FilterCategories = React.memo((props) => {
 	);
 });
 
-const mapStateToProps = (state) => {
-	return {
-		categories: state.categories,
-	};
-};
+const mapStateToProps = (state) => ({
+	categories: state.categories,
+});
 
-const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ filterCategories }, dispatch);
+const mapDispatchToProps = {
+	filterCategories,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterCategories);

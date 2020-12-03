@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { addBill } from '../actions/FormActionCreators';
 import { changeChartVisibility } from '../actions/ShowChartActionCreators';
-import { addCategory } from '../actions/CategoriesActionCreators';
 import BudgetForm from './BudgetForm';
 import moment from 'moment';
 
@@ -46,16 +44,6 @@ const AddBill = React.memo((props) => {
 		event.preventDefault();
 		props.changeChartVisibility();
 	};
-
-	// const handleAddCategory = (event) => {
-	// 	event.preventDefault();
-	// 	const newCategory = {
-	// 		id: props.categories[props.categories.length - 1].id + 1,
-	// 		category: event.target.newCategory.value,
-	// 	};
-	// 	console.log(newCategory);
-	// 	console.log(props.categories);
-	// };
 
 	return (
 		<div
@@ -168,18 +156,14 @@ const AddBill = React.memo((props) => {
 	);
 });
 
-const mapStateToProps = (state) => {
-	return {
-		bills: state.bills,
-		categories: state.categories,
-	};
-};
+const mapStateToProps = (state) => ({
+	bills: state.bills,
+	categories: state.categories,
+});
 
-const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators(
-		{ addBill, changeChartVisibility, addCategory },
-		dispatch
-	);
+const mapDispatchToProps = {
+	addBill,
+	changeChartVisibility,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddBill);

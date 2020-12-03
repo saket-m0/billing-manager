@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import moment from 'moment';
 
 import { editBill } from '../actions/FormActionCreators';
@@ -164,15 +163,13 @@ const EditBill = React.memo((props) => {
 	);
 });
 
-const mapStateToProps = (state) => {
-	return {
-		bills: state.bills,
-		categories: state.categories,
-	};
-};
+const mapStateToProps = (state) => ({
+	bills: state.bills,
+	categories: state.categories,
+});
 
-const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ editBill }, dispatch);
+const mapDispatchToProps = {
+	editBill,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditBill);
