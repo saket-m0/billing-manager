@@ -1,6 +1,8 @@
+import { PAY_BILLS } from '../actions/PayBillsActionCreators';
+
 export const PayBillsReducer = (state = [], action) => {
 	switch (action.type) {
-		case 'PAY_BILLS':
+		case PAY_BILLS:
 			state = [];
 			action.bills.sort((a, b) => {
 				return b.amount - a.amount;

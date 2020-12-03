@@ -1,10 +1,15 @@
 import Bills from '../Data/Bills';
+import {
+	BILL_ADDED,
+	BILL_REMOVED,
+	BILL_EDITED,
+} from '../actions/FormActionCreators';
 
 export const BillsReducer = (state = Bills, action) => {
 	switch (action.type) {
-		case 'BILL_ADDED':
+		case BILL_ADDED:
 			return [...state, action.bill];
-		case 'BILL_REMOVED':
+		case BILL_REMOVED:
 			state.splice(
 				state.findIndex((bill) => {
 					return bill.id === action.id;
@@ -12,7 +17,7 @@ export const BillsReducer = (state = Bills, action) => {
 				1
 			);
 			return [...state];
-		case 'BILL_EDITED':
+		case BILL_EDITED:
 			const index = state.findIndex((bill) => bill.id === action.id);
 			state[index] = { id: action.id, ...action.newBill };
 			return [...state];
